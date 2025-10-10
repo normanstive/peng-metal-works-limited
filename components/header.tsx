@@ -1,8 +1,14 @@
+"use client"
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { Menu, X } from "lucide-react"
+import { useState } from "react"
 
 export function Header() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-white/80 backdrop-blur-md shadow-sm">
       <div className="container flex h-20 items-center justify-between">
@@ -20,6 +26,7 @@ export function Header() {
           </div>
         </Link>
 
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           <Link href="#about" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
             About
@@ -41,10 +48,63 @@ export function Header() {
           </Link>
         </nav>
 
-        <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold">
-          <Link href="#contact">Request Quote</Link>
-        </Button>
+        <div className="flex items-center gap-3">
+          <Button asChild className="hidden sm:flex bg-accent text-accent-foreground hover:bg-accent/90 font-semibold">
+            <Link href="#contact">Request Quote</Link>
+          </Button>
+
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
+
+      {mobileMenuOpen && (
+        <div className="md:hidden border-t border-border bg-white/95 backdrop-blur-md">
+          <nav className="container py-4 flex flex-col gap-4">
+            <Link
+              href="#about"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-base font-medium text-foreground/80 hover:text-primary transition-colors py-2"
+            >
+              About
+            </Link>
+            <Link
+              href="#services"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-base font-medium text-foreground/80 hover:text-primary transition-colors py-2"
+            >
+              Services
+            </Link>
+            <Link
+              href="#portfolio"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-base font-medium text-foreground/80 hover:text-primary transition-colors py-2"
+            >
+              Portfolio
+            </Link>
+            <Link
+              href="#contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-base font-medium text-foreground/80 hover:text-primary transition-colors py-2"
+            >
+              Contact
+            </Link>
+            <Button
+              asChild
+              className="sm:hidden bg-accent text-accent-foreground hover:bg-accent/90 font-semibold w-full"
+            >
+              <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>
+                Request Quote
+              </Link>
+            </Button>
+          </nav>
+        </div>
+      )}
     </header>
   )
 }
