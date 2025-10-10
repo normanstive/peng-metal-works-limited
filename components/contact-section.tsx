@@ -143,10 +143,12 @@ export function ContactSection() {
                           <SelectValue placeholder="Select a service" />
                         </SelectTrigger>
                         <SelectContent>
+                          <SelectItem value="masts">Masts services (galvanized, non-galvanized)</SelectItem>
+                          <SelectItem value="CNC">CNC Services</SelectItem>
                           <SelectItem value="fabrication">Metal Works & Fabrication</SelectItem>
                           <SelectItem value="building">Building Solutions</SelectItem>
                           <SelectItem value="special">Special Projects</SelectItem>
-                          <SelectItem value="transport">Transport & Logistics</SelectItem>
+                          <SelectItem value="transport">Transport</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -184,21 +186,21 @@ export function ContactSection() {
                   <Phone className="h-5 w-5 text-primary mt-0.5" />
                   <div>
                     <p className="font-medium">Phone</p>
-                    <p className="text-sm text-muted-foreground">+254 700 000 000</p>
+                    <p className="text-sm text-muted-foreground">+254 722 291 560</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Mail className="h-5 w-5 text-primary mt-0.5" />
                   <div>
                     <p className="font-medium">Email</p>
-                    <p className="text-sm text-muted-foreground">info@metalfab.co.ke</p>
+                    <p className="text-sm text-muted-foreground">Pengmetals@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-primary mt-0.5" />
                   <div>
                     <p className="font-medium">Location</p>
-                    <p className="text-sm text-muted-foreground">Industrial Area, Nairobi, Kenya</p>
+                    <p className="text-sm text-muted-foreground">Kawangware, Nairobi, Kenya</p>
                   </div>
                 </div>
               </CardContent>
@@ -211,16 +213,12 @@ export function ContactSection() {
               </CardHeader>
               <CardContent className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span>Monday - Friday</span>
+                  <span>Monday - Saturday</span>
                   <span>8:00 AM - 6:00 PM</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Saturday</span>
-                  <span>9:00 AM - 2:00 PM</span>
-                </div>
-                <div className="flex justify-between">
                   <span>Sunday</span>
-                  <span>Closed</span>
+                  <span>9:00 AM - 2:00 PM</span>
                 </div>
               </CardContent>
             </Card>

@@ -20,7 +20,7 @@ export function HeroSection() {
         <div className="container relative z-10 py-20 lg:py-28">
           <div className="max-w-3xl">
             <h1 className="text-balance font-bold text-5xl md:text-6xl lg:text-7xl text-white mb-6 tracking-tight">
-              Precision Metal Fabrication & CNC Solutions
+              Telecom masts, Metal Fabrication & CNC Solutions
             </h1>
             <p className="text-pretty text-xl text-white/90 mb-8 leading-relaxed">
               From custom mast creation to industrial-grade CNC cutting, we deliver strength and accuracy that lasts.

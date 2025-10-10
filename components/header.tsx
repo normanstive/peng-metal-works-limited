@@ -16,8 +16,8 @@ export function Header() {
           <Image
             src="/images/pmwl-logo.jpg"
             alt="Peng Metal Works Limited"
-            width={60}
-            height={60}
+            width={600}
+            height={600}
             className="h-14 w-14 object-contain"
           />
           <div className="hidden sm:block">
@@ -41,7 +41,7 @@ export function Header() {
             href="#portfolio"
             className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
           >
-            Portfolio
+            Projects
           </Link>
           <Link href="#contact" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
             Contact
@@ -50,7 +50,7 @@ export function Header() {
 
         <div className="flex items-center gap-3">
           <Button asChild className="hidden sm:flex bg-accent text-accent-foreground hover:bg-accent/90 font-semibold">
-            <Link href="#contact">Request Quote</Link>
+            <Link href="#contact">Request Quotation</Link>
           </Button>
 
           <button
@@ -85,7 +85,7 @@ export function Header() {
               onClick={() => setMobileMenuOpen(false)}
               className="text-base font-medium text-foreground/80 hover:text-primary transition-colors py-2"
             >
-              Portfolio
+              Projects
             </Link>
             <Link
               href="#contact"

@@ -12,8 +12,8 @@ export function Footer() {
               <Image
                 src="/images/pmwl-logo.jpg"
                 alt="PMWL"
-                width={50}
-                height={50}
+                width={1000}
+                height={1000}
                 className="h-12 w-12 object-contain bg-white rounded p-1"
               />
               <div>
@@ -41,7 +41,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="#portfolio" className="opacity-90 hover:opacity-100 hover:text-accent transition-colors">
-                  Portfolio
+                  Projects
                 </Link>
               </li>
               <li>
@@ -55,19 +55,21 @@ export function Footer() {
           <div>
             <h3 className="font-bold mb-4">Services</h3>
             <ul className="space-y-2 text-sm opacity-90">
-              <li>Metal Fabrication</li>
+              <li>Masts Creation</li>
               <li>CNC Cutting</li>
+              <li>Metal Fabrication</li>
               <li>Building Solutions</li>
               <li>Custom Projects</li>
+              <li>Transportation Services</li>
             </ul>
           </div>
 
           <div>
             <h3 className="font-bold mb-4">Contact</h3>
             <ul className="space-y-2 text-sm opacity-90">
-              <li>+254 700 000 000</li>
-              <li>info@pmwl.co.ke</li>
-              <li>Industrial Area, Nairobi</li>
+              <li>+254 722 291 560</li>
+              <li>Pengmetals@gmail.com</li>
+              <li>Kawangware, Nairobi</li>
             </ul>
           </div>
         </div>
