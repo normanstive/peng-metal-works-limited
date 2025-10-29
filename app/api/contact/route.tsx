@@ -1,60 +1,71 @@
-import { NextResponse } from "next/server"
 import { Resend } from "resend"
 
+const resend = new Resend(process.env.RESEND_API_KEY)
+
 export async function POST(request: Request) {
-  console.log("[v0] Contact API route called")
-
   try {
-    // Parse the request body
     const body = await request.json()
-    console.log("[v0] Received form data:", body)
-
     const { name, email, phone, service, message } = body
 
+    console.log("[v0] Form submission received:", { name, email, phone, service, message })
+
     // Validate required fields
-    if (!name || !email || !phone || !service || !message) {
+    if (!name || !email || !message) {
       console.log("[v0] Validation failed - missing required fields")
-      return NextResponse.json({ error: "All fields are required" }, { status: 400 })
+      return Response.json({ error: "Please fill in all required fields" }, { status: 400 })
     }
 
-    // Check if RESEND_API_KEY is configured
-    if (!process.env.RESEND_API_KEY) {
-      console.error("[v0] RESEND_API_KEY is not configured in environment variables")
-      return NextResponse.json({ error: "Email service not configured" }, { status: 500 })
-    }
-
-    const resend = new Resend(process.env.RESEND_API_KEY)
-
-    console.log("[v0] Attempting to send email via Resend...")
-
-    // Send email using Resend
-    const { data, error } = await resend.emails.send({
-      from: "Peng Metal Works <onboarding@resend.dev>", // Use your verified domain
-      to: ["Pengmetals@gmail.com"], // Your business email
-      replyTo: email, // Customer's email for easy replies
-      subject: `New ${service} Request from ${name}`,
+    // Include customer email in the body so you can see who submitted
+    const result = await resend.emails.send({
+      from: "onboarding@resend.dev", // Resend test email
+      to: "njorogenorman99@gmail.com", // Your Resend account email
+      subject: `New Contact Form Submission from ${name}`,
       html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Service:</strong> ${service}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #0066CC;">New Contact Form Submission</h2>
+          
+          <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
+            <p><strong>Service:</strong> ${service || "Not specified"}</p>
+          </div>
+          
+          <div style="margin: 20px 0;">
+            <h3 style="color: #0066CC;">Message:</h3>
+            <p style="white-space: pre-wrap; line-height: 1.6;">${message}</p>
+          </div>
+          
+          <div style="border-top: 2px solid #FFC107; padding-top: 20px; margin-top: 30px;">
+            <p style="color: #666; font-size: 12px;">
+              This is an automated email from your PMWL website contact form.
+            </p>
+            <p style="color: #666; font-size: 12px;">
+              <strong>To reply to this customer:</strong> Send an email to ${email}
+            </p>
+          </div>
+        </div>
       `,
     })
 
-    if (error) {
-      console.error("[v0] Resend error:", error)
-      return NextResponse.json({ error: "Failed to send email" }, { status: 500 })
-    }
+    console.log("[v0] Email sent successfully:", result)
 
-    console.log("[v0] Email sent successfully:", data)
-    return NextResponse.json({ success: true, data }, { status: 200 })
+    return Response.json(
+      {
+        success: true,
+        message: "Your request has been submitted successfully! We will get back to you soon.",
+        data: result,
+      },
+      { status: 200 },
+    )
   } catch (error) {
-    console.error("[v0] Unexpected error:", error)
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : "An unexpected error occurred" },
+    console.error("[v0] Error sending email:", error)
+
+    return Response.json(
+      {
+        error: "Failed to submit your request. Please try again later.",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 },
     )
   }

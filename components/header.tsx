@@ -14,7 +14,7 @@ export function Header() {
       <div className="container flex h-20 items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/images/pmwl-logo.jpg"
+            src="/images/Peng-logo.jpg"
             alt="Peng Metal Works Limited"
             width={600}
             height={600}

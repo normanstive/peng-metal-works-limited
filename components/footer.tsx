@@ -10,7 +10,7 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <Image
-                src="/images/pmwl-logo.jpg"
+                src="/images/Peng-logo.jpg"
                 alt="PMWL"
                 width={1000}
                 height={1000}
